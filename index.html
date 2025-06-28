@@ -1,111 +1,65 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Mind Mirror 🪞</title>
-  <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      font-family: 'Comfortaa', cursive;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364);
-      background-size: 400% 400%;
-      animation: gradient 10s ease infinite;
-      color: white;
-    }
-
-    @keyframes gradient {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
-    }
-
-    .box {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 40px;
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 8px 32px rgba( 0, 0, 0, 0.3 );
-      text-align: center;
-      width: 90%;
-      max-width: 500px;
-    }
-
-    .question {
-      font-size: 1.4rem;
-      margin: 20px 0 30px;
-      animation: fadeIn 0.8s ease forwards;
-      min-height: 60px;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    button {
-      padding: 12px 20px;
-      border: none;
-      border-radius: 30px;
-      font-size: 1rem;
-      font-family: 'Comfortaa', cursive;
-      background: #00c6ff;
-      background: linear-gradient(to right, #0072ff, #00c6ff);
-      color: white;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    button:hover {
-      transform: scale(1.05);
-      opacity: 0.9;
-    }
-
-    footer {
-      margin-top: 30px;
-      font-size: 0.8rem;
-      opacity: 0.6;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Innerverse 🌌</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="box">
-    <div class="question" id="question">“What kind of peace are you looking for?”</div>
-    <button onclick="showQuestion()">Reflect Again 🪞</button>
-    <footer>Made by Humayun • Mind Mirror App</footer>
+  <div class="container">
+    <h1>Welcome to Innerverse 🌌</h1>
+
+    <!-- Mood Tracker -->
+    <section class="section mood">
+      <h2>🎭 How Are You Feeling Today?</h2>
+      <div class="mood-options">
+        <button onclick="setMood('😊')">😊</button>
+        <button onclick="setMood('😔')">😔</button>
+        <button onclick="setMood('😡')">😡</button>
+        <button onclick="setMood('😌')">😌</button>
+        <button onclick="setMood('😢')">😢</button>
+      </div>
+      <p id="mood-result"></p>
+    </section>
+
+    <!-- Reflection Prompt -->
+    <section class="section reflection">
+      <h2>💭 Daily Reflection Prompt</h2>
+      <p id="prompt">Click below to reflect</p>
+      <button onclick="newPrompt()">Show Prompt</button>
+    </section>
+
+    <!-- Whisper a Secret -->
+    <section class="section secret">
+      <h2>🔐 Whisper a Secret</h2>
+      <textarea id="userSecret" rows="3" placeholder="Type your secret..."></textarea>
+      <button onclick="sendSecret()">Release Secret</button>
+      <p id="randomSecret"></p>
+    </section>
+
+    <!-- Affirmation Drawer -->
+    <section class="section affirm">
+      <h2>💖 Need a Little Hope?</h2>
+      <button onclick="showAffirmation()">Show Affirmation</button>
+      <p id="affirmation"></p>
+    </section>
+
+    <!-- Journal Area -->
+    <section class="section journal">
+      <h2>📝 Write Your Thoughts</h2>
+      <textarea id="journalBox" rows="6" placeholder="Write freely..."></textarea>
+      <button onclick="saveJournal()">Save Locally</button>
+      <p id="saveStatus"></p>
+    </section>
   </div>
 
-  <script>
-    const questions = [
-      "What kind of peace are you looking for?",
-      "Who are you when no one is watching?",
-      "What is something you’ve forgiven but not forgotten?",
-      "What are you pretending to be okay with?",
-      "What’s a truth you keep avoiding?",
-      "When was the last time you truly felt seen?",
-      "What does healing look like to you?",
-      "What would you say to your past self right now?",
-      "What part of yourself do you hide from others?",
-      "What emotion have you been avoiding lately?",
-      "Who or what makes you feel safe — and why?",
-      "What’s something you wish people knew about you?",
-      "What are you proud of but never say out loud?"
-    ];
+  <audio id="bgMusic" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/22/audio_4b0f9336d3.mp3" type="audio/mp3">
+  </audio>
+  <button class="play-btn" onclick="toggleMusic()">🎵 Play Music</button>
 
-    function showQuestion() {
-      const random = questions[Math.floor(Math.random() * questions.length)];
-      const el = document.getElementById('question');
-      el.style.opacity = 0;
-      setTimeout(() => {
-        el.innerHTML = `“${random}”`;
-        el.style.opacity = 1;
-      }, 200);
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
